@@ -252,7 +252,6 @@ export const register = async (req, res, next) => {
 
 export const verifyCode = async (req, res, next) => {
   const email = req.body.email;
-  console.log(email);
   if (!email) {
     return failedResponse(res, "Please enter valid Email");
   }
