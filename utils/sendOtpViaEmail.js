@@ -28,15 +28,15 @@ export function generateAndStoreOTP(userid) {
 
 export async function sendOtpViaEmail(recipient, otp) {
   let transporter = nodemailer.createTransport({
-    host: "send.smtp.com",
+    host: "smtp.smtp.com",
     port: 465,
     secure: true, // false for TLS
     auth: {
-      user: "revoridegame", // Your email address
-      pass: "2025-1Million$", // Your email password
+      user: "random", // Your email address
+      pass: "abcd", // Your email password
     },
     headers: {
-      "Reply-To": "support@revoridegame.com",
+      "Reply-To": "support@example.com",
     },
   });
 
@@ -128,7 +128,7 @@ export async function sendOtpViaEmail(recipient, otp) {
     `;
 
     let mailOptions = {
-      from: "support@revoridegame.com",
+      from: "support@example.com",
       to: recipient,
       subject: "OTP for Revoride Game",
       html: htmlContent,
