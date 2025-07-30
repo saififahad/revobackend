@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model refer {
+  id                 Int     @id @default(autoincrement())
+  parentCommission   Int     @default(50)
+  notReferCommission Int     @default(50)
+  mwa                Int     @default(1)
+  usdt               Int     @default(80)
+  address            String  @db.VarChar(500)
+  privatekey         String  @db.VarChar(500)
+  mda                Int     @default(1)
+  rev                Decimal @default(0.000001) @db.Decimal(10, 6)
+  childrenCommission Int     @default(100)
+}
+
+model bonus {
+  id     Int   @id @default(autoincrement())
+  level1 Float @default(0.25)
+  level2 Float @default(0.2)
+  level3 Float @default(0.15)
+  level4 Float @default(0.1)
+  level5 Float @default(0.05)
+}
+
+model users {
+  id                Int     @id @default(autoincrement())
+  id_user           String  @default("0") @db.VarChar(50)
+  email             String  @unique @default("0")
+  phone             String  @default("0") @db.VarChar(20)
+  token             String  @default("0") @db.VarChar(500)
+  name_user         String  @default("0") @db.VarChar(50)
+  password          String  @default("0") @db.VarChar(50)
+  money             Int     @default(0)
+  deposit           Int     @default(0)
+  code              String  @unique @default("0") @db.VarChar(30)
+  invite            String  @default("0") @db.VarChar(30)
+  veri              Int     @default(0)
+  otp               String  @default("0") @db.VarChar(10)
+  ip_address        String  @default("0") @db.VarChar(50)
+  status            Int     @default(0)
+  time              String  @default("0") @db.VarChar(50)
+  time_otp          String  @default("0") @db.VarChar(50)
+  referrals         Int     @default(0)
+  approvedReferrals String?
+  earnedCommission  Int     @default(0)
+  pendingCommission Int     @default(0)
+  pendingReferrals  String?
+  level1            Int     @default(0)
+  level2            Int     @default(0)
+  level3            Int     @default(0)
+  level4            Int     @default(0)
+  level5            Int     @default(0)
+}
+
+model wingo {
+  id     Int      @id @default(autoincrement())
+  period String   @db.VarChar(100)
+  game   String   @default("0") @db.VarChar(10)
+  status Int      @default(0)
+  time   DateTime @default(now())
+  result Int      @default(0)
+}
+
+model betwingo {
+  id         Int      @id @default(autoincrement())
+  id_product String   @default("")
+  name       String   @default("")
+  phone      String   @default("0") @db.VarChar(20)
+  email      String   @default("") @db.VarChar(500)
+  stage      String   @default("0") @db.VarChar(255)
+  result     Int      @default(0)
+  betAmount  Decimal  @default(0.000000000000000000000000000000)
+  fee        Decimal  @default(0.000000000000000000000000000000)
+  get        Decimal  @default(0.000000000000000000000000000000)
+  game       String   @default("0") @db.VarChar(50)
+  bet        String   @default("0") @db.VarChar(10)
+  status     Int      @default(0)
+  time       DateTime @default(now())
+}
+
+model transaction {
+  id        Int      @id @default(autoincrement())
+  cur       String   @default("rev")
+  date      DateTime @default(now())
+  phone     String   @default("0") @db.VarChar(20)
+  name_user String   @default("0") @db.VarChar(50)
+  points    Int      @default(0)
+  token     Int      @default(0)
+  type      String   @default("d")
+  game      String   @default("")
+  email     String   @default("0")
+  receiver  String   @default("0") @db.VarChar(500)
+  sender    String   @default("0") @db.VarChar(500)
+}
+
+model crashedplane {
+  id Int    @id @default(autoincrement())
+  nl String @default("1")
+  nh String @default("10")
+  sl String @default("1")
+  sh String @default("3")
+  sp String @default("70")
+  sm String @default("1.3")
+  ml String @default("1")
+  mh String @default("2")
+  mr String @default("10")
+  da String @default("40")
+}
+
+model aviator {
+  id             Int       @id @default(autoincrement())
+  phone          String    @default("0") @db.VarChar(50)
+  betAmount      Int
+  withdrawAmount Int       @default(0)
+  multiplier     Float     @default(0)
+  betTime        DateTime  @default(now())
+  withdrawTime   DateTime? @default(now())
+}
+
+model autoaviator {
+  id             Int       @id @default(autoincrement())
+  phone          String    @default("0") @db.VarChar(50)
+  betAmount      Int
+  withdrawAmount Int       @default(0)
+  multiplier     Float     @default(0)
+  betTime        DateTime  @default(now())
+  withdrawTime   DateTime?
+}
+
+model bettime {
+  id   Int    @id @default(autoincrement())
+  time String @default("0")
+}
+
+model admin {
+  id              Int     @id @default(autoincrement())
+  wingo1          String  @default("'-1'") @db.VarChar(255)
+  wingo3          String  @default("'-1'") @db.VarChar(255)
+  wingo5          String  @default("'-1'") @db.VarChar(255)
+  wingo10         String  @default("'-1'") @db.VarChar(255)
+  password        String? @default("admin@123")
+  visiblepassword String? @default("admin@123")
+  username        String  @default("admin")
+  period1         String  @default("admin@123") @db.VarChar(100)
+  period10        String  @default("admin@123") @db.VarChar(100)
+  period3         String  @default("admin@123") @db.VarChar(100)
+  period5         String  @default("admin@123") @db.VarChar(100)
+}
