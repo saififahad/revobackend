@@ -19,8 +19,6 @@ export const setReferDetatails = async (req, res) => {
       level5,
     } = req.body;
 
-    console.log(req.body);
-
     if (
       !parentCommission ||
       !childrenCommission ||

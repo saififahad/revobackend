@@ -188,19 +188,7 @@ export const register = async (req, res, next) => {
             pendingReferrals: updatedPendingReferrals,
           },
         });
-        // await prisma.transaction.create({
-        //   data: {
-        //     points: Number(parentCommission),
-        //     type: "d",
-        //     cur: "rev",
-        //     email: parentUser.email,
-        //     receiver: "",
-        //     sender: "",
-        //     name_user: parentUser.name_user,
-        //     phone: parentUser.phone,
-        //     token: 0,
-        //   },
-        // });
+        money = parentCommission;
       }
     }
 
@@ -237,6 +225,7 @@ export const register = async (req, res, next) => {
         },
       });
     }
+
     return res.status(200).json({
       message: "Registeration Successfull",
       status: true,
@@ -260,7 +249,6 @@ export const verifyCode = async (req, res, next) => {
   if (existUser.length) {
     return failedResponse(res, "Email Already registered");
   }
-  console.log("line 264");
   const otp = generateAndStoreOTP(email);
   const now = Date.now();
   const OTP_VALIDITY_DURATION = 2 * 60 * 1000 + 500;

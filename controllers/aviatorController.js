@@ -125,14 +125,6 @@ export const placeBet = async (req, res, next) => {
     let level5Bonus = Math.floor((bet * levelBonus.level5) / 100);
     let currentInviteCode = user.invite;
 
-    console.log(
-      level1Bonus,
-      level2Bonus,
-      level3Bonus,
-      level4Bonus,
-      level5Bonus
-    );
-
     const levels = [
       { level: "level1", bonus: level1Bonus },
       { level: "level2", bonus: level2Bonus },
@@ -142,7 +134,6 @@ export const placeBet = async (req, res, next) => {
     ];
 
     for (const { level, bonus } of levels) {
-      console.log(bonus, level);
       if (!currentInviteCode) break;
       if (bonus <= 0) continue;
       const currentUser = await prisma.users.findFirst({

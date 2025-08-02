@@ -45,7 +45,7 @@ const createWingo = async () => {
       data: {
         id: 1,
         parentCommission: 50,
-        notReferCommission: 50,
+        notReferCommission: 0,
         mwa: 1,
         usdt: 80,
         // address: "0xE15E7Be69559E4F7c830B1958F22369B14128B95", old rev token address
